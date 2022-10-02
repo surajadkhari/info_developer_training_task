@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../dashboard/login_page.dart';
+import '../dashboard/home.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
@@ -8,7 +8,7 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: const LoginPage(),
+      home: const HomePage(),
       theme: ThemeData(
         fontFamily: "Product Sans",
         scaffoldBackgroundColor: const Color(0xffE1E8EC),
