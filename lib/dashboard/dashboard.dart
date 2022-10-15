@@ -210,7 +210,7 @@ class AllSection extends StatelessWidget {
                         "Under \$${e.price}",
                         style: const TextStyle(
                             fontWeight: FontWeight.w600,
-                            fontSize: 30,
+                            fontSize: 24,
                             color: Colors.white),
                       ),
                       const Text(

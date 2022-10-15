@@ -14,9 +14,10 @@ List<FlowerModel> flowerList = [
   FlowerModel(price: "20", flower: "assets/images/jasmine.png"),
   FlowerModel(
     price: "35",
-    flower: 'assets/images/lavender.png',
+    flower: 'assets/images/orchid.png',
   ),
-  FlowerModel(price: "50", flower: 'assets/images/rose.png')
+  FlowerModel(price: "50", flower: 'assets/images/rose.png'),
+  FlowerModel(price: "50", flower: 'assets/images/wepik.png')
 ];
 
 List<Color> cardColor = [
