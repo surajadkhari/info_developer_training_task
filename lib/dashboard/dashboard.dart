@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../const/app_const.dart';
 import 'model/flower_model.dart';
 
 class Dashbaord extends StatefulWidget {
@@ -17,11 +18,84 @@ class _DashbaordState extends State<Dashbaord> {
     List<String> tabList = ["All", "Collections", "Occasions", "International"];
     List<Widget> section = [
       const AllSection(),
-      const Text("Sorry it is not available"),
-      const Text("Sorry it is not available"),
-      const Text("Sorry it is not available")
+      Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisSize: MainAxisSize.min,
+        children: const [
+          SizedBox(
+            height: 200,
+          ),
+          Center(child: Text("Sorry it is not available🙏")),
+        ],
+      ),
+      Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisSize: MainAxisSize.min,
+        children: const [
+          SizedBox(
+            height: 200,
+          ),
+          Center(child: Text("Sorry it is not available🙏")),
+        ],
+      ),
+      Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisSize: MainAxisSize.min,
+        children: const [
+          SizedBox(
+            height: 200,
+          ),
+          Center(child: Text("Sorry it is not available🙏")),
+        ],
+      ),
     ];
     return Scaffold(
+      bottomNavigationBar: BottomNavigationBar(
+          showSelectedLabels: false,
+          showUnselectedLabels: false,
+          type: BottomNavigationBarType.fixed,
+          selectedItemColor: AppConst.primaryColor,
+          unselectedItemColor: AppConst.primaryColor,
+          items: const [
+            BottomNavigationBarItem(
+              label: "Home",
+              icon: Icon(
+                Icons.spa_outlined,
+                size: 30,
+              ),
+            ),
+            BottomNavigationBarItem(
+              label: 'Project',
+              icon: Icon(
+                Icons.manage_search_outlined,
+                size: 30,
+              ),
+            ),
+            BottomNavigationBarItem(
+              label: 'About Us',
+              icon: Icon(
+                Icons.shopping_cart_outlined,
+                size: 30,
+              ),
+            ),
+            BottomNavigationBarItem(
+              label: 'Our Team',
+              icon: Icon(
+                Icons.favorite_border_outlined,
+                size: 30,
+              ),
+            ),
+            BottomNavigationBarItem(
+              label: 'Contact',
+              icon: Icon(
+                Icons.person_outline_outlined,
+                size: 30,
+              ),
+            ),
+          ]),
       appBar: AppBar(
         actions: [
           IconButton(
@@ -72,16 +146,18 @@ class _DashbaordState extends State<Dashbaord> {
                                   border: Border.all(
                                     color: tapIndex == index
                                         ? Colors.white
-                                        : const Color(0xff336351),
+                                        : const Color(0xff336351)
+                                            .withOpacity(0.5),
                                   ),
                                   color: tapIndex == index
                                       ? const Color(0xff336351)
                                       : Colors.white,
                                   borderRadius: BorderRadius.circular(8)),
                               child: Text(
-                                tabList[index],
+                                tabList[index].toUpperCase(),
                                 style: TextStyle(
-                                  fontWeight: FontWeight.w500,
+                                  fontSize: 11,
+                                  fontWeight: FontWeight.w600,
                                   color: tapIndex == index
                                       ? Colors.white
                                       : const Color(0xff336351),
