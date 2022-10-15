@@ -33,7 +33,7 @@ class App extends StatelessWidget {
           elevation: 0,
           backgroundColor: Colors.white,
           titleTextStyle: TextStyle(
-              // fontFamily: "Product Sans",
+              fontFamily: "Product Sans",
               color: Color(0xff336351),
               fontSize: 26,
               fontWeight: FontWeight.w600),
