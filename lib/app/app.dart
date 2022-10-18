@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../dashboard/dashboard.dart';
+import '../dashboard/presentation/dashboard.dart';
 
 class App extends StatelessWidget {
   const App({super.key});

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../const/app_const.dart';
-import 'model/flower_model.dart';
+import '../../const/app_const.dart';
+import '../model/flower_model.dart';
 
 class Dashbaord extends StatefulWidget {
   const Dashbaord({super.key});
