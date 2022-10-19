@@ -3,6 +3,7 @@ import 'package:info_dev/const/app_const.dart';
 import 'package:info_dev/dashboard/model/movie_model.dart';
 import 'package:info_dev/dashboard/service/api_service.dart';
 
+import '../../core/api_exception.dart';
 import 'component/movie_card.dart';
 
 class Dashboard extends StatefulWidget {
@@ -44,7 +45,10 @@ class _DashboardState extends State<Dashboard> {
               ),
             );
           } else if (snapData.hasError) {
-            return Text(snapData.error.toString());
+            if (snapData.hasError is ApiException) {
+              return errorText(error: '${snapData.error}');
+            }
+            return errorText(error: "Oops, something unexpected happened");
           }
           return const Center(
             child: CircularProgressIndicator(),
@@ -52,5 +56,9 @@ class _DashboardState extends State<Dashboard> {
         },
       ),
     );
+  }
+
+  Widget errorText({required String error}) {
+    return Center(child: Text(error));
   }
 }
