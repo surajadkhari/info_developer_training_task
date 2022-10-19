@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:info_dev/const/app_config.dart';
 
 class ApiClient {
   Future request({
@@ -7,7 +8,7 @@ class ApiClient {
     String method = "get",
   }) async {
     Dio dio = Dio(
-      BaseOptions(baseUrl: path, headers: {
+      BaseOptions(baseUrl: AppConfig.baseUrl, headers: {
         'Content-Type': 'application/json',
         "Accept": 'application/json',
       }),
