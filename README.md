@@ -21,6 +21,5 @@ https://www.figma.com/proto/UDUxo4JTNTXd8eESxRWsUP/Task-2.0?node-id=1%3A2&starti
 #Task 6
 //
 https://towardsdev.com/using-future-builder-to-fetch-api-9ec48da15c8b
-#Task 7
-//
+##Task 7
 ![movie_app](https://user-images.githubusercontent.com/48079501/196752044-68a3102c-40fe-4de7-ab89-da0c1e68747f.gif)
