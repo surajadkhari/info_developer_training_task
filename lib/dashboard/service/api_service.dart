@@ -9,7 +9,7 @@ class ApiRepo {
   Future<List<MovieModel>> gePopularMovielist() async {
     try {
       final result = await ApiClient().request(path: AppConfig.popular);
-      final List data = result["result"];
+      final List data = result["results"];
       return data.map((e) => MovieModel.fromJson(e)).toList();
     } on DioError catch (e) {
       throw ApiException.fromDioError(e);

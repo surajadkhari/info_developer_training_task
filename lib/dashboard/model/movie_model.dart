@@ -11,11 +11,12 @@ class MovieModel {
     required this.overView,
   });
 
+  String get fullImageUrl => 'https://image.tmdb.org/t/p/w200$poster';
   factory MovieModel.fromJson(Map<String, dynamic> json) {
     return MovieModel(
-        movieName: json["title"],
-        realeaseDate: json["release_date"],
-        poster: json["poster_path"],
-        overView: json["overview"]);
+        movieName: json["title"] ?? "",
+        realeaseDate: json["release_date"] ?? "",
+        poster: json["poster_path"] ?? "",
+        overView: json["overview"] ?? "");
   }
 }
