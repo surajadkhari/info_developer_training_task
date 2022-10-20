@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../dashboard/presentation/dashboard.dart';
+import '../dashboard/dashboard.dart';
 import '../theme/theme.dart';
 
 class App extends StatelessWidget {
