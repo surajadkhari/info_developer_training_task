@@ -8,6 +8,6 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(home: const Dashboard(), theme: appTheme());
+    return MaterialApp(home: const LoginScreen2(), theme: appTheme());
   }
 }
