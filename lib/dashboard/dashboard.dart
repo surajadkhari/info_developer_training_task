@@ -36,6 +36,20 @@ class _DashboardState extends State<Dashboard> {
     }
   }
 
+  nameValidation({required String value}) {
+    if (value.isEmpty) {
+      return "Please enter your name";
+    }
+    return null;
+  }
+
+  jobValidation({required String value}) {
+    if (value.isEmpty) {
+      return "Please enter your job";
+    }
+    return null;
+  }
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -65,12 +79,7 @@ class _DashboardState extends State<Dashboard> {
                         filled: true,
                       ),
                       controller: nameController,
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return "Please enter your name";
-                        }
-                        return null;
-                      },
+                      validator: (value) => nameValidation(value: value!),
                     ),
                   ),
                   Padding(
@@ -88,12 +97,7 @@ class _DashboardState extends State<Dashboard> {
                         filled: true,
                       ),
                       controller: jobController,
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please enter job';
-                        }
-                        return null;
-                      },
+                      validator: (value) => jobValidation(value: value!),
                     ),
                   ),
                   AspectRatio(
@@ -159,4 +163,3 @@ class _DashboardState extends State<Dashboard> {
     );
   }
 }
-
