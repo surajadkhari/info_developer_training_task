@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:developer';
 
 import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
@@ -30,7 +29,6 @@ class ApiService {
       data: userModel,
     );
     if (result.statusCode == 201) {
-      log(result.body.toString());
       return UserResponseModel.fromJson(json: jsonDecode(result.body));
     } else {
       throw Exception("Failed to fetch data");

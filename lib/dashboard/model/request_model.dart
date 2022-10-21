@@ -4,7 +4,7 @@ class UserRequesttModel {
 
   UserRequesttModel({required this.username, required this.userjob});
   
- Map<String,dynamic> sendData() {
+ Map<String,dynamic> toJson() {
     return {
       "name": username,
       "job": userjob,
