@@ -24,3 +24,7 @@ https://towardsdev.com/using-future-builder-to-fetch-api-9ec48da15c8b
 
 ## Task 7
 ![movie_app](https://user-images.githubusercontent.com/48079501/196752044-68a3102c-40fe-4de7-ab89-da0c1e68747f.gif)
+
+## Task 8
+Uploading 0-02-03-3faeaacaf186a9344aaea8b7a019e8f29c172b88a253597a0ba06d3f596e9d05_9103bc0e822f6759.mp4…
+
