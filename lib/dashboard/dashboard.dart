@@ -123,7 +123,7 @@ class _DashboardState extends State<Dashboard> {
                                   child: Column(
                                     children: [
                                       const Text(
-                                          "You have successful send data"),
+                                          "You have successfully send data"),
                                       ListTile(
                                         title: Column(
                                           mainAxisAlignment:
@@ -159,3 +159,4 @@ class _DashboardState extends State<Dashboard> {
     );
   }
 }
+
