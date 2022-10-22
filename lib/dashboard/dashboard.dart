@@ -1,164 +1,92 @@
 import 'package:flutter/material.dart';
-import 'package:info_dev/dashboard/service/api_client.dart';
-import 'package:intl/intl.dart';
 
-import 'model/request_model.dart';
+import 'service/flower_model.dart';
 
-class Dashboard extends StatefulWidget {
+class Dashboard extends StatelessWidget {
   const Dashboard({super.key});
 
   @override
-  State<Dashboard> createState() => _DashboardState();
+  Widget build(BuildContext context) {
+    Size screenSize = MediaQuery.of(context).size;
+    return Scaffold(
+      appBar: AppBar(),
+      body: SingleChildScrollView(
+        child: Column(children: [
+          ...flowerList.map((e) => FlowerCard(
+                cardindex: flowerList.indexOf(e),
+                flowerName: e.flowerName,
+                image: e.image,
+                price: e.price,
+              )),
+          // SizedBox(
+
+          //   height: screenSize.height,
+          //   child: ListView.builder(
+          //       itemCount: flowerList.length,
+          //       itemBuilder: (context, index) {
+          //         var e = flowerList[index];
+
+          //         return FlowerCard(
+          //           cardindex: index,
+          //           flowerName: e.flowerName,
+          //           image: e.image,
+          //           price: e.price,
+          //         );
+          // //       }),
+        ]),
+      ),
+    );
+  }
 }
 
-class _DashboardState extends State<Dashboard> {
-  final _formKey = GlobalKey<FormState>();
-  late TextEditingController nameController;
-  late TextEditingController jobController;
+class FlowerCard extends StatelessWidget {
+  const FlowerCard(
+      {super.key,
+      required this.price,
+      required this.flowerName,
+      required this.image,
+      this.priceTextColor = Colors.white,
+      this.priceTextSize = 14,
+      required this.cardindex});
 
-  @override
-  void initState() {
-    nameController = TextEditingController();
-    jobController = TextEditingController();
-  }
-
-  @override
-  void dispose() {
-    nameController.dispose();
-    jobController.dispose();
-    super.dispose();
-  }
-
-  void dimisskeyBoard() {
-    FocusScopeNode currentFocus = FocusScope.of(context);
-    if (!currentFocus.hasPrimaryFocus) {
-      return currentFocus.unfocus();
-    }
-  }
-
-  nameValidation({required String value}) {
-    if (value.isEmpty) {
-      return "Please enter your name";
-    }
-    return null;
-  }
-
-  jobValidation({required String value}) {
-    if (value.isEmpty) {
-      return "Please enter your job";
-    }
-    return null;
-  }
-
+  final String price;
+  final String flowerName;
+  final String image;
+  final double priceTextSize;
+  final Color priceTextColor;
+  final int cardindex;
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: dimisskeyBoard,
-      child: Scaffold(
-        appBar: AppBar(),
-        body: Form(
-          key: _formKey,
-          child: Center(
-            child: SingleChildScrollView(
-              keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
-              child: Column(
-                children: [
-                  const Text("Post Data"),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: TextFormField(
-                      textInputAction: TextInputAction.next,
-                      decoration: InputDecoration(
-                        enabledBorder: InputBorder.none,
-                        errorBorder: InputBorder.none,
-                        focusedBorder: InputBorder.none,
-                        hintText: "Name",
-                        fillColor: Colors.grey.withOpacity(0.2),
-                        hintStyle:
-                            TextStyle(color: Colors.grey.withOpacity(0.9)),
-                        filled: true,
-                      ),
-                      controller: nameController,
-                      validator: (value) => nameValidation(value: value!),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: TextFormField(
-                      textInputAction: TextInputAction.done,
-                      decoration: InputDecoration(
-                        enabledBorder: InputBorder.none,
-                        errorBorder: InputBorder.none,
-                        focusedBorder: InputBorder.none,
-                        hintStyle:
-                            TextStyle(color: Colors.grey.withOpacity(0.9)),
-                        hintText: "Job",
-                        fillColor: Colors.grey.withOpacity(0.2),
-                        filled: true,
-                      ),
-                      controller: jobController,
-                      validator: (value) => jobValidation(value: value!),
-                    ),
-                  ),
-                  AspectRatio(
-                    aspectRatio: 12 / 2,
-                    child: Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: ElevatedButton(
-                        onPressed: () async {
-                          if (_formKey.currentState!.validate()) {
-                            var data = UserRequesttModel(
-                                userjob: jobController.text,
-                                username: nameController.text);
-
-                            var result = await ApiService().createUser(
-                              userModel: data.toJson(),
-                            );
-
-                            showDialog(
-                              context: context,
-                              builder: (context) => AlertDialog(
-                                content: Container(
-                                  height: 128,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(0),
-                                    color: Colors.white,
-                                  ),
-                                  child: Column(
-                                    children: [
-                                      const Text(
-                                          "You have successfully send data"),
-                                      ListTile(
-                                        title: Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Text('ID: ${result.id}'),
-                                            Text("Name : ${result.name}"),
-                                            Text("Job  ${result.job}"),
-                                            Text(
-                                                "Created at${DateFormat("dd MMMM yyy").format(result.createdAt)}")
-                                          ],
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            );
-                          }
-                        },
-                        child: const Text("Submit"),
-                      ),
-                    ),
-                  )
-                ],
+    Size screenSize = MediaQuery.of(context).size;
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+      height: screenSize.height * 0.25,
+      width: screenSize.width,
+      margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+      decoration: BoxDecoration(
+        color: cardColor[cardindex],
+        borderRadius: BorderRadius.circular(10),
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                "Price $price",
+                style:
+                    TextStyle(fontSize: priceTextSize, color: priceTextColor),
               ),
-            ),
+              Text(
+                flowerName,
+                style: textstle[cardindex],
+              )
+            ],
           ),
-        ),
+          Image.network(image)
+        ],
       ),
     );
   }
