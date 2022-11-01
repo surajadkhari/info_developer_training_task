@@ -1,9 +1,11 @@
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:info_dev/const/app_config.dart';
-import 'package:info_dev/core/api_client.dart';
 import 'package:info_dev/dashboard/data/model/service_model.dart';
 
+import '../../../core/api_client.dart';
+
 abstract class DashBoardRemoteDataSource {
-  Future<ServicesModel> getServices();
+  Future<List<ServicesModel>> getServices();
 }
 
 class DashBoardRemoteDataScourseImpl implements DashBoardRemoteDataSource {
@@ -11,8 +13,12 @@ class DashBoardRemoteDataScourseImpl implements DashBoardRemoteDataSource {
   DashBoardRemoteDataScourseImpl(this._apiClient);
 
   @override
-  Future<ServicesModel> getServices() async {
+  Future<List<ServicesModel>> getServices() async {
     final result = await _apiClient.request(path: AppConfig.service);
-    return ServicesModel.fromJson(result);
+    return result.map((e) => ServicesModel.fromJson(result));
   }
 }
+
+final dashboardDataSourceProvider = Provider<DashBoardRemoteDataSource>((ref) {
+  return DashBoardRemoteDataScourseImpl(ref.watch(apiProvider));
+});

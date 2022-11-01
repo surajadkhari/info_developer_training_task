@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:info_dev/const/app_config.dart';
 
 class ApiClient {
@@ -23,3 +24,7 @@ class ApiClient {
     }
   }
 }
+
+final apiProvider = Provider<ApiClient>((ref) {
+  return ApiClient() ;
+});
