@@ -1,8 +1,8 @@
 import 'dart:convert';
 
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
-import 'package:info_dev/dashboard/data/model/response_model.dart';
 
 class ApiClient {
   Future request(
@@ -20,18 +20,7 @@ class ApiClient {
   }
 }
 
-class ApiService {
-  Future<UserResponseModel> createUser(
-      {required Map<String, dynamic> userModel}) async {
-    Response result = await ApiClient().request(
-      methodType: "post",
-      endPoint: "https://reqres.in/api/users",
-      data: userModel,
-    );
-    if (result.statusCode == 201) {
-      return UserResponseModel.fromJson(json: jsonDecode(result.body));
-    } else {
-      throw Exception("Failed to fetch data");
-    }
-  }
-}
+
+final apiProvider = Provider<ApiClient>((ref) {
+  return ApiClient() ;
+});
