@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
-import 'package:info_dev/dashboard/model/response_model.dart';
+import 'package:info_dev/dashboard/data/model/response_model.dart';
 
 class ApiClient {
   Future request(
