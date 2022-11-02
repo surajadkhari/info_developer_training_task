@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../home/data/model/features_imagemodel.dart';
 import '../home/presentation/widget/home_carousel/home_carousel.dart';
-import '../home/presentation/widget/home_news_section/home_news_section.dart';
+import '../home/presentation/widget/home_sectiontitle/home_section_title.dart';
 import '../home/presentation/widget/home_service_section/home_services.dart';
+import '../home/presentation/widget/news_section/news_section.dart';
 
 final carouselIndexProvider = StateProvider<int>((ref) {
   return 0;
@@ -13,7 +13,7 @@ final carouselIndexProvider = StateProvider<int>((ref) {
 class Dashboard extends ConsumerWidget {
   const Dashboard({super.key});
   @override
-  Widget build(BuildContext context, WidgetRef ref) { 
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       drawer: const Drawer(),
       appBar: AppBar(
@@ -43,43 +43,11 @@ class Dashboard extends ConsumerWidget {
                 rightHeading: "See All",
                 onPressed: () {},
               ),
-              ...imageList.map(
-                (e) => NewsCard(
-                  e: e,
-                ),
-              )
+              const NewsSection()
             ],
           ),
         ),
       ),
-    );
-  }
-}
-
-class SectionHeading extends StatelessWidget {
-  const SectionHeading(
-      {Key? key,
-      required this.leftHeading,
-      required this.rightHeading,
-      required this.onPressed})
-      : super(key: key);
-  final String rightHeading;
-  final String leftHeading;
-  final void Function()? onPressed;
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Text(
-          leftHeading,
-          style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-        ),
-        TextButton(
-          onPressed: onPressed,
-          child: Text(rightHeading),
-        )
-      ],
     );
   }
 }
