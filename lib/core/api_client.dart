@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:info_dev/const/app_config.dart';
+import 'package:info_dev/core/api_exception.dart';
 
 class ApiClient {
   Future request({
@@ -20,7 +21,7 @@ class ApiClient {
           : await dio.post(path, data: postData);
       return result.data;
     } on DioError catch (e) {
-      throw Exception(e);
+      throw ApiException.fromDioError(e);
     }
   }
 }
