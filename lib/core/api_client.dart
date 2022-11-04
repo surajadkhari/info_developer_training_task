@@ -4,13 +4,16 @@ import 'package:info_dev/const/app_config.dart';
 import 'package:info_dev/core/api_exception.dart';
 
 class ApiClient {
-  Future request({
+  Future request(
+    {
+
     required String path,
     Map<String, dynamic> postData = const {},
+    String baseUrl=AppConfig.baseUrl,
     String method = "get",
   }) async {
     Dio dio = Dio(
-      BaseOptions(baseUrl: AppConfig.baseUrl, headers: {
+      BaseOptions(baseUrl:baseUrl, headers: {
         'Content-Type': 'application/json',
         "Accept": 'application/json',
       }),
@@ -21,7 +24,7 @@ class ApiClient {
           : await dio.post(path, data: postData);
       return result.data;
     } on DioError catch (e) {
-      throw ApiException.fromDioError(e);
+      throw ApiException.fromDioError(e); 
     }
   }
 }

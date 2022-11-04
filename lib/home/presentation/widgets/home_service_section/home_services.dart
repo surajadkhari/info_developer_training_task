@@ -1,5 +1,8 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:info_dev/const/app_config.dart';
+import 'package:shimmer/shimmer.dart';
 
 import '../../controller/home_featured_services_controller.dart';
 
@@ -21,7 +24,7 @@ class HomeServiceSection extends ConsumerWidget {
                     margin: const EdgeInsets.symmetric(
                       horizontal: 4,
                     ),
-                    height: screenSize.height * 0.278,
+                    height: screenSize.height * 0.26,
                     width: screenSize.height * 0.2,
                     decoration: const BoxDecoration(
                       color: Colors.white,
@@ -43,12 +46,12 @@ class HomeServiceSection extends ConsumerWidget {
                               ),
                               image: DecorationImage(
                                   fit: BoxFit.cover,
-                                  image: NetworkImage(
-                                      "https://goldmineedu.com/${e.image}"))),
+                                  image: CachedNetworkImageProvider(
+                                      AppConfig.mainURL + e.image))),
                         ),
                         Container(
                           alignment: Alignment.center,
-                          height: screenSize.height * 0.27 -
+                          height: screenSize.height * 0.25 -
                               screenSize.height * 0.18,
                           decoration: const BoxDecoration(
                             boxShadow: [
@@ -79,6 +82,24 @@ class HomeServiceSection extends ConsumerWidget {
           );
         },
         error: (error, stackTrace) => Text(error.toString()),
-        loading: () => const CircularProgressIndicator.adaptive());
+        loading: () =>
+            // const CircularProgressIndicator.adaptive(),
+            SizedBox(
+              height: screenSize.height * 0.15,
+              width: screenSize.width,
+              child: Shimmer.fromColors(
+                baseColor: Colors.grey[300]!,
+                highlightColor: Colors.grey[100]!,
+                child: Builder(builder: (context) {
+                  return Container(
+                    margin: const EdgeInsets.symmetric(horizontal: 12),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                  );
+                }),
+              ),
+            ));
   }
 }

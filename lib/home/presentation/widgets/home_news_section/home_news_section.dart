@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_html/flutter_html.dart';
+import 'package:info_dev/const/app_config.dart';
+import 'package:info_dev/home/data/model/blog_model.dart';
+import 'package:info_dev/utils/normalnavigation.dart';
 
-import '../../../data/model/features_imagemodel.dart';
+import '../../../../news_detail/news_detail.dart';
 
 class NewsCard extends StatelessWidget {
   const NewsCard({Key? key, required this.e}) : super(key: key);
-  final FeaturedImageModel e;
+  final BlogModel e;
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => {},
+      onTap: () => {letsgo(context: context, screen: NewsDetailScreen(e: e))},
       child: Container(
         margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 0),
         decoration: BoxDecoration(
@@ -36,7 +40,7 @@ class NewsCard extends StatelessWidget {
                         bottomLeft: Radius.circular(8)),
                     image: DecorationImage(
                       fit: BoxFit.cover,
-                      image: NetworkImage(e.featureImage),
+                      image: NetworkImage(AppConfig.mainURL + e.image),
                     )),
               ),
               Expanded(
@@ -48,20 +52,26 @@ class NewsCard extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "Study in Cananda",
+                        e.title,
                         overflow: TextOverflow.clip,
                         maxLines: 2,
                         style: Theme.of(context)
                             .textTheme
-                            .displayLarge!
+                            .headline3!
                             .copyWith(fontSize: 14),
                       ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      const Text(
-                        "Studying in Canada, colleges, and universities have their own set of admission requirements that students need to meet to get admission.",
-                        style: TextStyle(fontSize: 13),
+                      // const SizedBox(
+                      //   height: 10,
+                      // ),
+                      Html(
+                        data: e.content,
+                        // overflow: TextOverflow.clip,
+                        // maxLines: 2,
+                        // style: const TextStyle(fontSize: 13),
+                        style: {
+                          'p': Style(
+                              maxLines: 2, textOverflow: TextOverflow.ellipsis),
+                        },
                       )
                     ],
                   ),
