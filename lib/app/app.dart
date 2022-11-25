@@ -7,10 +7,6 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        home: AudioRecorder(
-          onStop: (path) {},
-        ),
-        theme: appTheme());
+    return MaterialApp(home: const HomePage(), theme: appTheme());
   }
 }
